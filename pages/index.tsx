@@ -1,29 +1,23 @@
-import { NextPage } from "next";
-
-import { Navbar, Footer, Hero, Breadcrumbs } from "@components/common";
+import { NextPageWithLayout } from "@pages/_app";
+import { Hero, Breadcrumbs } from "@components/common";
 import { EthRates, WalletBar } from "@components/web3";
-import { CourseList } from "@components/course"
-import { OrderCard } from "@components/order"
+import { CourseList } from "@components/course";
+import { OrderCard } from "@components/order";
+import { BaseLayout } from "@components/layout";
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
 	return (
-		<div>
-			<div className="relative bg-white overflow-hidden">
-				<div className="relative max-w-7xl mx-auto px-4">
-					<Navbar />
-					<div className="fit">
-						<Hero />
-						<Breadcrumbs />
-						<WalletBar />
-						<EthRates />
-						<OrderCard />
-						<CourseList />
-					</div>
-				</div>
-				<Footer />
-			</div>
-		</div>
+		<>
+			<Hero />
+			<Breadcrumbs />
+			<WalletBar />
+			<EthRates />
+			<OrderCard />
+			<CourseList />
+		</>
 	);
 }
+
+Home.Layout = BaseLayout;
 
 export default Home;

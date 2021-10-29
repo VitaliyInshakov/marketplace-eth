@@ -1,17 +1,21 @@
-import { NextPage } from "next";
-
+import { NextPageWithLayout } from "@pages/_app";
 import { Modal } from "@components/common";
 import { CourseHero, Curriculum, Keypoints } from "@components/course";
+import { BaseLayout } from "@components/layout";
 
-const Course: NextPage = () => {
+const Course: NextPageWithLayout = () => {
 	return (
-		<div className="relative max-w-7xl mx-auto px-4">
-			<CourseHero />
+		<>
+			<div className="py-4">
+				<CourseHero />
+			</div>
 			<Keypoints />
 			<Curriculum />
 			<Modal />
-		</div>
+		</>
 	)
 }
+
+Course.Layout = BaseLayout;
 
 export default Course;
