@@ -1,7 +1,9 @@
+import { GetStaticPaths, GetStaticProps } from "next";
 import { NextPageWithLayout } from "@pages/_app";
 import { Modal } from "@components/common";
 import { CourseHero, Curriculum, Keypoints } from "@components/course";
 import { BaseLayout } from "@components/layout";
+import { getAllCourses } from "@content/courses/fetcher";
 
 const Course: NextPageWithLayout = () => {
 	return (
@@ -14,6 +16,26 @@ const Course: NextPageWithLayout = () => {
 			<Modal />
 		</>
 	)
+}
+
+export const getStaticPaths: GetStaticPaths = () => {
+	const { data } = getAllCourses();
+
+	return {
+		paths: data.map(({ slug }) => ({
+			params: { slug },
+		})),
+		fallback: false,
+	};
+};
+
+export const getStaticProps: GetStaticProps = ({ params }) => {
+	const { data } = getAllCourses();
+	const course = data.filter(course => course.slug === params?.slug)[0];
+
+	return {
+		props: { course },
+	};
 }
 
 Course.Layout = BaseLayout;
