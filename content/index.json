@@ -69,7 +69,7 @@
   {
     "id": "925927",
     "type": "Electron JS",
-    "title": "Electron & React JS: Build a Native Chat App with Javascript",
+    "title": "Electron & React JS - Build a Native Chat App with Javascript",
     "description": "Learn how to build a chat app with Electron & React JS. Utilize React JS + Firebase(DB) to create a fully native app",
     "coverImage": "https://thrangra.sirv.com/Electron.jpeg",
     "author": "Filip Jerga",
@@ -134,7 +134,7 @@
   {
     "id": "846120",
     "type": "React, Angular",
-    "title": "React, Angular, Node In-Depth Guide: Beginner to Pro (2020)",
+    "title": "React, Angular, Node In-Depth Guide - Beginner to Pro (2020)",
     "description": "Beginner to Advance Web Developer Guide. Master Angular (Angular 8+), React + Redux (React 16.12+) & Node with Mongo DB!",
     "coverImage": "https://thrangra.sirv.com/AngularJS.jpeg",
     "author": "Filip Jerga",
@@ -151,7 +151,7 @@
   {
     "id": "848148",
     "type": "React JS",
-    "title": "React JS & Firebase Complete Course (incl. Chat Application)",
+    "title": "React JS & Firebase - Complete Course (incl. Chat Application)",
     "description": "Create 'real world' React JS applications connected to Firestore (Firebase). Redux, authentication + real time features!",
     "coverImage": "https://thrangra.sirv.com/ReactFirebase.jpeg",
     "author": "Filip Jerga",
@@ -167,7 +167,7 @@
   {
     "id": "848633",
     "type": "Vue JS",
-    "title": "Vue JS 2 &  Firebase Complete Course",
+    "title": "Vue JS 2 & Firebase - Complete Course",
     "description": "Learn how to create 'real world' Vue JS 2 application connected to Firestore(Firebase) Database.",
     "coverImage": "https://thrangra.sirv.com/VueFirebase.jpeg",
     "author": "Filip Jerga",
@@ -233,7 +233,7 @@
   {
     "id": "850741",
     "type": "Nuxt JS",
-    "title": "The Complete Nuxt.js & Vue.js Course | Self Promo App",
+    "title": "The Complete Nuxt.js & Vue.js Course - Self Promo App",
     "description": "Complete Developer Guide covering Vue.js and Nuxt.js basic to advance concepts. Get your hands on real projects.",
     "coverImage": "https://thrangra.sirv.com/NuxtJS.jpeg",
     "author": "Filip Jerga",
