@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { useRouter } from "next/router"
 import { useWeb3 } from "@components/providers";
 import { Button } from "@components/common";
 
 export default function Navbar() {
-	const { connect, isWeb3Loaded, isLoading } = useWeb3();
-	const router = useRouter();
+	const { connect, isWeb3Loaded, isLoading, hooks } = useWeb3();
+	const { account } = hooks.useAccount();
 
 	return (
 		<section>
@@ -39,7 +38,9 @@ export default function Navbar() {
 								? <Button onClick={connect} disabled>Loading...</Button>
 								: isWeb3Loaded
 									? <Button onClick={connect}>Connect</Button>
-									: <Button onClick={() => router.push("https://metamask.io/download.html")}>Install Metamask</Button>}
+									: <Button onClick={() => window.open("https://metamask.io/download.html", "_blank")}>
+										Install Metamask
+									</Button>}
 						</div>
 					</div>
 				</nav>
