@@ -17,7 +17,7 @@ export default function Web3Provider({ children }: { children: ReactNode; }) {
 		provider: null,
 		web3: null,
 		contract: null,
-		isLoading: false,
+		isLoading: true,
 	});
 
 	useEffect(() => {
@@ -29,10 +29,10 @@ export default function Web3Provider({ children }: { children: ReactNode; }) {
 					provider,
 					web3,
 					contract: null,
-					isLoading: true,
+					isLoading: false,
 				});
 			} else {
-				setWeb3Api(prevState => ({...prevState, isLoading: true}));
+				setWeb3Api(prevState => ({...prevState, isLoading: false}));
 				console.error("Please, install Metamask.");
 			}
 		}
@@ -43,7 +43,7 @@ export default function Web3Provider({ children }: { children: ReactNode; }) {
 	const _web3Api = useMemo(() => {
 		return {
 			...web3Api,
-			isWeb3Loaded: !web3Api.isLoading && web3Api.web3,
+			isWeb3Loaded: web3Api.web3 != null,
 			connect: web3Api.provider
 				? async () => {
 					try {
