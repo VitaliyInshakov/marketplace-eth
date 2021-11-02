@@ -46,7 +46,7 @@ export default function Web3Provider({ children }: { children: ReactNode; }) {
 		return {
 			...web3Api,
 			isWeb3Loaded: web3 != null,
-			hooks: setupHooks(web3!),
+			getHooks: () => setupHooks(web3!),
 			connect: provider
 				? async () => {
 					try {
@@ -68,4 +68,9 @@ export default function Web3Provider({ children }: { children: ReactNode; }) {
 
 export function useWeb3() {
 	return useContext(Web3Context);
+}
+
+export function useHooks(cb: (hooks: any) => any) {
+	const { getHooks } = useWeb3();
+	return cb(getHooks());
 }
