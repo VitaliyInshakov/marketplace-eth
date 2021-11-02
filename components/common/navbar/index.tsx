@@ -38,7 +38,7 @@ export default function Navbar() {
 							{isLoading
 								? <Button onClick={connect} disabled>Loading...</Button>
 								: isWeb3Loaded
-									? account
+									? account.data
 										? <Button hoverable={false} className="cursor-default">Hi There</Button>
 										: <Button onClick={connect}>Connect</Button>
 									: <Button onClick={() => window.open("https://metamask.io/download.html", "_blank")}>
@@ -48,6 +48,13 @@ export default function Navbar() {
 					</div>
 				</nav>
 			</div>
+			{account.data &&
+				<div className="flex justify-end pt-1 sm:px-6 lg:px-8">
+					<div className="text-white bg-indigo-600 rounded-md p-2">
+						{account.data}
+					</div>
+				</div>
+			}
 		</section>
 	)
 }
