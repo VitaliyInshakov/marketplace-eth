@@ -38,7 +38,9 @@ export default function Navbar() {
 							{isLoading
 								? <Button onClick={connect} disabled>Loading...</Button>
 								: isWeb3Loaded
-									? <Button onClick={connect}>Connect</Button>
+									? account
+										? <Button hoverable={false} className="cursor-default">Hi There</Button>
+										: <Button onClick={connect}>Connect</Button>
 									: <Button onClick={() => window.open("https://metamask.io/download.html", "_blank")}>
 										Install Metamask
 									</Button>}
