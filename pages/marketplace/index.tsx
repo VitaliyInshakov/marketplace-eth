@@ -1,8 +1,8 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@pages/_app";
-import { CourseCard, CourseList } from "@components/course";
+import { CourseList } from "@components/course";
 import { BaseLayout } from "@components/layout";
-import { CourseType, getAllCourses } from "@content/courses/fetcher";
+import { getAllCourses } from "@content/courses/fetcher";
 import { WalletBar } from "@components/web3";
 import { useAccount } from "@components/hooks/web3/useAccount";
 import { useNetwork } from "@components/hooks/web3/useNetwork";
@@ -18,6 +18,9 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 					address={account.data}
 					network={network.data}
 				/>
+				Current {`${network.data}`}
+				Target {`${network.target}`}
+				Is Supported {`${network.isSupported}`}
 			</div>
 			<CourseList courses={courses} />
 		</>
