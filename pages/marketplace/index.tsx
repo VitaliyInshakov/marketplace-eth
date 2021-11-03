@@ -1,14 +1,19 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@pages/_app";
-import { Hero } from "@components/common";
 import { CourseList } from "@components/course";
 import { BaseLayout } from "@components/layout";
 import { getAllCourses } from "@content/courses/fetcher";
+import { WalletBar } from "@components/web3";
+import { useAccount } from "@components/hooks/web3/useAccount";
 
-const Home: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof getStaticProps>) => {
+	const { account } = useAccount();
+
 	return (
 		<>
-			<Hero />
+			<div className="py-4">
+				<WalletBar address={account.data} />
+			</div>
 			<CourseList courses={courses} />
 		</>
 	);
@@ -22,6 +27,6 @@ export const getStaticProps: GetStaticProps = () => {
 	};
 }
 
-Home.Layout = BaseLayout;
+Marketplace.Layout = BaseLayout;
 
-export default Home;
+export default Marketplace;

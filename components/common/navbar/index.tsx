@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useWeb3 } from "@components/providers";
 import { Button } from "@components/common";
-import { useAccount } from "@components/web3/hooks/useAccount";
+import { useAccount } from "@components/hooks/web3/useAccount";
 
 export default function Navbar() {
 	const { connect, isWeb3Loaded, isLoading } = useWeb3();
@@ -18,7 +18,7 @@ export default function Navbar() {
 									Home
 								</a>
 							</Link>
-							<Link href="/" >
+							<Link href="/marketplace" >
 								<a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
 									Marketplace
 								</a>
