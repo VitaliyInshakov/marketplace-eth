@@ -5,13 +5,16 @@ import { BaseLayout } from "@components/layout";
 import { getAllCourses } from "@content/courses/fetcher";
 import { WalletBar } from "@components/web3";
 import { useAccount } from "@components/hooks/web3/useAccount";
+import { useNetwork } from "@components/hooks/web3/useNetwork";
 
 const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const { account } = useAccount();
+	const { network } = useNetwork()
 
 	return (
 		<>
 			<div className="py-4">
+				{ network.data }
 				<WalletBar address={account.data} />
 			</div>
 			<CourseList courses={courses} />
