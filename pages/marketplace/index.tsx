@@ -14,8 +14,10 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 	return (
 		<>
 			<div className="py-4">
-				{ network.data }
-				<WalletBar address={account.data} />
+				<WalletBar
+					address={account.data}
+					network={network.data}
+				/>
 			</div>
 			<CourseList courses={courses} />
 		</>

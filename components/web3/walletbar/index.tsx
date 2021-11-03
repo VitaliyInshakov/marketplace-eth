@@ -1,8 +1,9 @@
 type WalletBarProps = {
 	address: string;
+	network: number;
 };
 
-export default function WalletBar({ address }: WalletBarProps) {
+export default function WalletBar({ address, network }: WalletBarProps) {
 	return (
 		<section className="text-white bg-indigo-600">
 			<div className="p-8">
@@ -17,7 +18,7 @@ export default function WalletBar({ address }: WalletBarProps) {
 						</div>
 					</div>
 					<div>
-						<div><span>Currently on </span><strong className="text-2xl">Ethereum Main Network</strong></div>
+						<div><span>Currently on </span><strong className="text-2xl">{network}</strong></div>
 					</div>
 				</div>
 			</div>
