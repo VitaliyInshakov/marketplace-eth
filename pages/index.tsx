@@ -1,9 +1,9 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@pages/_app";
 import { Hero } from "@components/common";
-import { CourseList } from "@components/course";
+import { CourseList, CourseCard } from "@components/course";
 import { BaseLayout } from "@components/layout";
-import { getAllCourses } from "@content/courses/fetcher";
+import { CourseType, getAllCourses } from "@content/courses/fetcher";
 
 const Home: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	return (

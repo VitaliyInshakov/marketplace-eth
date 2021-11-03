@@ -1,6 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
 import { CourseType } from "@content/courses/fetcher";
+import { CourseCard } from "@components/course";
 
 type ListProps = {
 	courses: CourseType[];
@@ -9,34 +8,7 @@ type ListProps = {
 export default function List({ courses }: ListProps) {
 	return (
 		<section className="grid md:grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
-			{courses.map(({ id, title, coverImage, type, description, slug }) =>
-				<div key={id} className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-					<div className="flex h-full">
-						<div className="flex h-full">
-							<Image
-								className="object-cover"
-								src={coverImage}
-								layout="fixed"
-								width="200"
-								height="230"
-								alt={title}
-							/>
-						</div>
-						<div className="p-8">
-							<div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-								{type}
-							</div>
-							<Link href={`/courses/${slug}`}>
-								<a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-								>{title}</a>
-							</Link>
-							<p className="mt-2 text-gray-500">
-								{description}
-							</p>
-						</div>
-					</div>
-				</div>
-			)}
+			{courses.map(course => <CourseCard key={course.id} course={course} />)}
 		</section>
 	)
 }
