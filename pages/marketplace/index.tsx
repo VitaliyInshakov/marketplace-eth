@@ -4,8 +4,7 @@ import { CourseList } from "@components/course";
 import { BaseLayout } from "@components/layout";
 import { getAllCourses } from "@content/courses/fetcher";
 import { WalletBar } from "@components/web3";
-import { useAccount } from "@components/hooks/web3/useAccount";
-import { useNetwork } from "@components/hooks/web3/useNetwork";
+import { useAccount, useNetwork } from "@components/hooks/web3";
 
 const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const { account } = useAccount();
@@ -19,7 +18,8 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 					network={{
 						data: network.data,
 						target: network.target,
-						isSupported: network.isSupported
+						isSupported: network.isSupported,
+						hasInitialResponse: network.hasInitialResponse
 					}}
 				/>
 			</div>

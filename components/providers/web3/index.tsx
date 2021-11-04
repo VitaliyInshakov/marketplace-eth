@@ -11,6 +11,7 @@ type Web3ApiType = {
 	web3: Web3 | null;
 	contract: null;
 	isLoading: boolean;
+	hooks: any;
 };
 
 export default function Web3Provider({ children }: { children: ReactNode; }) {
@@ -19,6 +20,7 @@ export default function Web3Provider({ children }: { children: ReactNode; }) {
 		web3: null,
 		contract: null,
 		isLoading: true,
+		hooks: setupHooks(),
 	});
 
 	useEffect(() => {
@@ -31,6 +33,7 @@ export default function Web3Provider({ children }: { children: ReactNode; }) {
 					web3,
 					contract: null,
 					isLoading: false,
+					hooks: setupHooks(web3, provider),
 				});
 			} else {
 				setWeb3Api(prevState => ({...prevState, isLoading: false}));
@@ -46,7 +49,6 @@ export default function Web3Provider({ children }: { children: ReactNode; }) {
 		return {
 			...web3Api,
 			isWeb3Loaded: web3 != null,
-			getHooks: () => setupHooks(web3!, provider),
 			connect: provider
 				? async () => {
 					try {
@@ -71,6 +73,6 @@ export function useWeb3() {
 }
 
 export function useHooks(cb: (hooks: any) => any) {
-	const { getHooks } = useWeb3();
-	return cb(getHooks());
+	const { hooks } = useWeb3()
+	return cb(hooks)
 }

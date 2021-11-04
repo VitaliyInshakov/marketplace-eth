@@ -1,6 +1,6 @@
 type WalletBarProps = {
 	address: string;
-	network: { data: string; target: string; isSupported: boolean; };
+	network: { data: string; target: string; isSupported: boolean; hasInitialResponse: boolean; };
 };
 
 export default function WalletBar({ address, network }: WalletBarProps) {
@@ -18,7 +18,7 @@ export default function WalletBar({ address, network }: WalletBarProps) {
 						</div>
 					</div>
 					<div>
-						{!network.isSupported &&
+						{network.hasInitialResponse && !network.isSupported &&
 							<div className="bg-red-400 p-4 rounded-lg">
 								<div>Connected to wrong network</div>
 								<div>

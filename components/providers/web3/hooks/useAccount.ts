@@ -7,7 +7,7 @@ const adminAddresses: Record<string, boolean> = {
 	"0x63064cb8bcb61c27b6387e70d9a1055b9da98b3ff1ae829251689b995f348b20": true
 }
 
-export const handler = (web3: Web3, provider: provider) => () => {
+export const handler = ({ web3, provider }: { web3: Web3; provider: provider; }) => () => {
 	const { data, mutate, ...rest } = useSWR(() =>
 		web3 ? "web3/accounts" : null,
 		async () => {
@@ -20,10 +20,10 @@ export const handler = (web3: Web3, provider: provider) => () => {
 		provider && (provider as any).on("accountsChanged", (accounts: string[]) => mutate(accounts[0] ?? null));
 	}, [provider]);
 
-	return { account: {
+	return {
 		data,
 		isAdmin: (data && adminAddresses[web3.utils.keccak256(data)]) ?? false,
 		mutate,
 		...rest,
-	} };
+	};
 };

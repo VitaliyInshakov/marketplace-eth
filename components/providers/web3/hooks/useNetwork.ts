@@ -15,7 +15,7 @@ const NETWORKS: Record<number, string> = {
 
 const targetNetwork = NETWORKS[process.env.NEXT_PUBLIC_TARGET_CHAIN_ID ?? 1];
 
-export const handler = (web3: Web3, provider: provider) => () => {
+export const handler = ({ web3, provider }: { web3: Web3; provider: provider;}) => () => {
 	const { data, mutate, ...rest } = useSWR(() =>
 		web3 ? "web3/network" : null,
 		async () => {
@@ -29,12 +29,10 @@ export const handler = (web3: Web3, provider: provider) => () => {
 	}, [web3]);
 
 	return {
-		network: {
-			data,
-			mutate,
-			target: targetNetwork,
-			isSupported: data === targetNetwork,
-			...rest,
-		}
+		data,
+		mutate,
+		target: targetNetwork,
+		isSupported: data === targetNetwork,
+		...rest,
 	}
 }
