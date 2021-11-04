@@ -16,11 +16,12 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 			<div className="py-4">
 				<WalletBar
 					address={account.data}
-					network={network.data}
+					network={{
+						data: network.data,
+						target: network.target,
+						isSupported: network.isSupported
+					}}
 				/>
-				Current {`${network.data}`}
-				Target {`${network.target}`}
-				Is Supported {`${network.isSupported}`}
 			</div>
 			<CourseList courses={courses} />
 		</>
