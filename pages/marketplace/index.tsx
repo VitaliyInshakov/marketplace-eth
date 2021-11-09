@@ -4,15 +4,17 @@ import { NextPageWithLayout } from "@pages/_app";
 import { CourseCard, CourseList } from "@components/course";
 import { BaseLayout } from "@components/layout";
 import { CourseType, getAllCourses } from "@content/courses/fetcher";
-import { WalletBar } from "@components/web3";
+import { EthRates, WalletBar } from "@components/web3";
 import { useAccount, useNetwork } from "@components/hooks/web3";
 import { OrderModal } from "@components/order";
 import { Button } from "@components/common";
+import { useEthPrice } from "@components/hooks/useEthPrice";
 
 const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const [selectedCourse, setSelectedCourse] = useState<null | CourseType>(null);
 	const { account } = useAccount();
-	const { network } = useNetwork()
+	const { network } = useNetwork();
+	const { eth } = useEthPrice();
 
 	return (
 		<>
@@ -25,6 +27,10 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 						isSupported: network.isSupported,
 						hasInitialResponse: network.hasInitialResponse
 					}}
+				/>
+				<EthRates
+					eth={eth.data}
+					ethPerItem={eth.perItem}
 				/>
 			</div>
 			<CourseList
