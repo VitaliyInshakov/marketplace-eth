@@ -4,6 +4,9 @@ module.exports = {
     theme: {
         extend: {
             maxWidth: {
+                flex: {
+                    "2": "2 2 0%"
+                },
                 "8xl": "1920px"
             }
         },
