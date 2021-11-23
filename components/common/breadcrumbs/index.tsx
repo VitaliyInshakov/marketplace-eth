@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ActiveLink } from "@components/common";
 
 type BreadcrumbsProps = {
 	items: { href: string; value: string; }[];
@@ -12,11 +12,9 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
 					<li
 						key={item.href}
 						className={`${i == 0 ? "pr-4" : "px-4"} font-medium text-gray-500 hover:text-gray-900`}>
-						<Link href={item.href}>
-							<a>
-								{item.value}
-							</a>
-						</Link>
+						<ActiveLink href={item.href}>
+							<a>{item.value}</a>
+						</ActiveLink>
 					</li>
 				)}
 			</ol>
