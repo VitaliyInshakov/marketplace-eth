@@ -16,6 +16,7 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 	const { network } = useNetwork();
 	const { eth } = useEthPrice();
 
+	const canPurchaseCourse = !!(account.data && network.isSupported);
 	return (
 		<>
 			<div className="py-4">
@@ -40,10 +41,12 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 					<CourseCard
 						key={course.id}
 						course={course}
-						Footer={
+						disabled={!canPurchaseCourse}
+						Footer={() =>
 							<div className="mt-4">
 								<Button
 									onClick={() => setSelectedCourse(course)}
+									disabled={!canPurchaseCourse}
 									variant="lightPurple">
 									Purchase
 								</Button>

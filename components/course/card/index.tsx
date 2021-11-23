@@ -5,16 +5,17 @@ import { Footer } from "@components/common";
 
 type CourseProps = {
 	course: CourseType;
-	Footer?: JSX.Element;
+	Footer?: () => JSX.Element;
+	disabled?: boolean;
 };
-export default function Card({ course }: CourseProps) {
+export default function Card({ course, disabled, Footer }: CourseProps) {
 	return (
 		<div
 			className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
 			<div className="flex h-full">
 				<div className="flex-1 h-full next-image-wrapper">
 					<Image
-						className="object-cover"
+						className={`object-cover ${disabled && "filter grayscale"}`}
 						src={course.coverImage}
 						layout="responsive"
 						width="200"
