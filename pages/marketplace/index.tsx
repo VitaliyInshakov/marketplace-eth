@@ -5,21 +5,19 @@ import { CourseCard, CourseList } from "@components/course";
 import { BaseLayout } from "@components/layout";
 import { CourseType, getAllCourses } from "@content/courses/fetcher";
 import { EthRates, WalletBar } from "@components/web3";
-import { useAccount, useNetwork } from "@components/hooks/web3";
+import { useWalletInfo } from "@components/hooks/web3";
 import { OrderModal } from "@components/order";
-import { Button } from "@components/common";
+import { Button, Breadcrumbs } from "@components/common";
 import { useEthPrice } from "@components/hooks/useEthPrice";
 
 const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const [selectedCourse, setSelectedCourse] = useState<null | CourseType>(null);
-	const { account } = useAccount();
-	const { network } = useNetwork();
+	const { account, network, canPurchaseCourse } = useWalletInfo();
 	const { eth } = useEthPrice();
 
-	const canPurchaseCourse = !!(account.data && network.isSupported);
 	return (
 		<>
-			<div className="py-4">
+			<div className="pt-4">
 				<WalletBar
 					address={account.data}
 					network={{
@@ -33,6 +31,9 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 					eth={eth.data}
 					ethPerItem={eth.perItem}
 				/>
+				<div className="flex flex-row-reverse py-4 px-4 sm:px-6 lg:px-8">
+					<Breadcrumbs />
+				</div>
 			</div>
 			<CourseList
 				courses={courses}
