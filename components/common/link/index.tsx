@@ -9,7 +9,7 @@ type ActiveLink = {
 } & LinkProps;
 export default function ActiveLink({ children, activeLinkClass, ...props }: ActiveLink) {
     const { pathname } = useRouter();
-    let className = "";
+    let className = children?.props.className || "";
 
     if (pathname === props.href) {
         className = `${className} ${activeLinkClass ? activeLinkClass : "text-indigo-600"}`

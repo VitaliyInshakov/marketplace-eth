@@ -1,7 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@pages/_app";
 import { Hero } from "@components/common";
-import { CourseList } from "@components/course";
+import { CourseCard, CourseList } from "@components/course";
 import { BaseLayout } from "@components/layout";
 import { getAllCourses } from "@content/courses/fetcher";
 
@@ -9,7 +9,14 @@ const Home: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof ge
 	return (
 		<>
 			<Hero />
-			<CourseList courses={courses} />
+			<CourseList courses={courses}>
+				{course =>
+					<CourseCard
+						key={course.id}
+						course={course}
+					/>
+				}
+			</CourseList>
 		</>
 	);
 }

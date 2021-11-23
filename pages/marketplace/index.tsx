@@ -13,6 +13,9 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 	const [selectedCourse, setSelectedCourse] = useState<null | CourseType>(null);
 	const { canPurchaseCourse } = useWalletInfo();
 
+	const purchaseCourse = (order: any) => {
+		alert(JSON.stringify(order))
+	}
 	return (
 		<>
 			<div className="py-4">
@@ -42,6 +45,7 @@ const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<ty
 				<OrderModal
 					course={selectedCourse}
 					onClose={() => setSelectedCourse(null)}
+					onSubmit={purchaseCourse}
 				/>}
 		</>
 	);
