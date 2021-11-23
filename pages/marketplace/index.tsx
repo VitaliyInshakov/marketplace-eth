@@ -4,36 +4,19 @@ import { NextPageWithLayout } from "@pages/_app";
 import { CourseCard, CourseList } from "@components/course";
 import { BaseLayout } from "@components/layout";
 import { CourseType, getAllCourses } from "@content/courses/fetcher";
-import { EthRates, WalletBar } from "@components/web3";
 import { useWalletInfo } from "@components/hooks/web3";
 import { OrderModal } from "@components/order";
-import { Button, Breadcrumbs } from "@components/common";
-import { useEthPrice } from "@components/hooks/useEthPrice";
+import { Button } from "@components/common";
+import { MarketHeader } from "@components/marketplace";
 
 const Marketplace: NextPageWithLayout = ({ courses }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const [selectedCourse, setSelectedCourse] = useState<null | CourseType>(null);
-	const { account, network, canPurchaseCourse } = useWalletInfo();
-	const { eth } = useEthPrice();
+	const { canPurchaseCourse } = useWalletInfo();
 
 	return (
 		<>
-			<div className="pt-4">
-				<WalletBar
-					address={account.data}
-					network={{
-						data: network.data,
-						target: network.target,
-						isSupported: network.isSupported,
-						hasInitialResponse: network.hasInitialResponse
-					}}
-				/>
-				<EthRates
-					eth={eth.data}
-					ethPerItem={eth.perItem}
-				/>
-				<div className="flex flex-row-reverse py-4 px-4 sm:px-6 lg:px-8">
-					<Breadcrumbs />
-				</div>
+			<div className="py-4">
+				<MarketHeader />
 			</div>
 			<CourseList
 				courses={courses}

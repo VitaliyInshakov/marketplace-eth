@@ -1,16 +1,14 @@
 import { useWeb3 } from "@components/providers";
+import { useWalletInfo } from "@components/hooks/web3";
 
-type WalletBarProps = {
-	address: string;
-	network: { data: string; target: string; isSupported: boolean; hasInitialResponse: boolean; };
-};
-
-export default function WalletBar({ address, network }: WalletBarProps) {
+export default function WalletBar() {
 	const { requireInstall } = useWeb3();
+	const { account, network } = useWalletInfo();
+
 	return (
 		<section className="text-white bg-indigo-600">
 			<div className="p-8">
-				<h1 className="text-2xl">Hello, {address}</h1>
+				<h1 className="text-2xl">Hello, {account.address}</h1>
 				<h2 className="subtitle mb-5 text-xl">I hope you are having a great day!</h2>
 				<div className="flex justify-between items-center">
 					<div className="sm:flex sm:justify-center lg:justify-start">
